@@ -1,0 +1,242 @@
+body {
+    font-family: Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+    background: url(/backgrnd.png);
+    background-size: cover;
+}
+
+
+.introductory-message {
+    margin: 0 250px 0 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    font-family: Helvetica, sans-serif;
+}
+
+
+.introductory-message h2 {
+    font-size: 32px;
+    text-align: center;
+    color: #2d73b5;
+}
+
+.introductory-message p {
+    font-size: 20px;
+    text-align: center;
+    color: #e6ae37;
+    margin-top: 14px;
+}
+
+/* Add some spacing between the introductory message and the form */
+.login-container {
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+
+.login-container {
+    background-color: white;
+    padding: 70px 60px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 425px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.login-form {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+}
+
+.logo-container {
+    perspective: 1000px; /* Adjust as needed for the depth effect */
+    width: fit-content; /* Adjust the width to fit the logo */
+    margin: 0 auto 20px; /* Center the container */
+}
+
+.logo {
+
+    width: 140px; /* Adjust based on the logo size */
+    transition: transform 0.7s; /* Smooth transition for the spin */
+    transform-style: preserve-3d;
+}
+
+.logo-container:hover .logo {
+    transform: rotateY(360deg); /* Rotate around the Y-axis */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #2d73b5;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: Helvetica, sans-serif;
+    font-size: large;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    animation: inputFocus 0.5s forwards;
+    outline: none; /* Removes the default focus outline */
+}
+
+@keyframes inputFocus {
+    0% { border-color: #ccc; box-shadow: none; }
+    100% { border-color: #23a6d5; box-shadow: 0 0 8px 0 rgba(34, 167, 240, 0.4); }
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    background-color: #2d73b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 40px 0 40px 0;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+
+.login-button:hover {
+    background-color: #e6ae37;
+}
+
+.forgot-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #2d73b5;
+    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 55%;
+    color: #2d73b5;
+    text-align: center;
+}
+
+.modal-content > .close-button {
+    text-align: left;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Existing styles... */
+
+@media (max-width: 768px) {
+
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    background: url(/fone.png);
+    background-size: cover;
+    box-sizing: border-box;
+
+}
+
+    .introductory-message {
+        margin: 20px 0; /* Adjust margin for smaller screens */
+        padding: 15px; /* Reduce padding */
+        width: 90%;
+    }
+
+    .introductory-message h2 {
+        font-size: 20px; /* Reduce font size */
+    }
+
+    .introductory-message p {
+        font-size: 15px; /* Reduce font size */
+        margin-top: 10px;
+    }
+
+    .login-container {
+        padding: 40px 20px; /* Adjust padding */
+        width: 90%; /* Increase width to use more of the screen */
+        max-width: none; /* Override max-width */
+    }
+
+    .login-form .logo {
+        width: 100px; /* Adjust logo size */
+    }
+
+    .login-button {
+        width: 100%; /* Full width button */
+        margin: 20px 0; /* Adjust margin */
+    }
+
+    .modal-content {
+        width: 80%; /* Make modal narrower to fit mobile screens */
+        margin: 10% auto; /* Adjust margin to center modal */
+    }
+
+    .modal-content > h2 {
+        font-size: 18px;
+    }
+
+    .modal-content > p {
+        font-size: 13px;
+    }
+
+}

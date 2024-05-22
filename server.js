@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { ConfidentialClientApplication } = require('@azure/msal-node');
+const path = require('path'); // Add this line at the top
 
 const SERVER_PORT = process.env.PORT || 5500;
 const REDIRECT_URI = "http://localhost:5500/redirect";
@@ -16,10 +17,12 @@ const msalConfig = {
 const app = express();
 app.use(express.json());
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // MSAL client
 const msalClient = new ConfidentialClientApplication(msalConfig);
 
-// Replace your MongoDB connection and User model usage here with Azure AD authentication logic as needed
 // Trigger Azure AD login
 app.get('/login', (req, res) => {
     const authUrl = msalClient.getAuthCodeUrl({

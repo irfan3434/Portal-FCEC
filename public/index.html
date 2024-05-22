@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="portal.css"> <!-- Link to CSS file -->
+    <link rel="icon" type="image/png" href="/icon.png" />
+
+</head>
+<body>
+    <!-- Introductory message -->
+    <div class="introductory-message">
+        <h2>Welcome to FCEC Portal</h2>
+        <p>Please log in to access the internal company facilities and services.</p>
+    </div>
+    <!-- End of Introductory message -->
+    <div class="login-container">
+          
+        <form id="loginForm" class="login-form">
+            <div class="logo-container">
+            <img src="FCEC-Logo.png" alt="Company Logo" class="logo">
+            </div>
+            <a href="#" class="forgot-link" onclick="openModal()">Forgot Email/Password?</a>
+        </form>
+        <button id="loginButton" type="button" class="login-button">Log In</button>
+        <div id="formMessage"></div>
+    </div>
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Forgot Email/Password?</h2>
+            <p>Please contact the IT department at <strong>irfan.ishtiaq@futurecityec.com</strong> or call <strong>+966546590644</strong> to reset your email or password.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+document.getElementById("loginButton").addEventListener("click", function() {
+    const tenantId = "7a25368c-2b0d-4c3e-9087-5a4fc08c1ec9";
+    const clientId = "e0886d4e-2aa0-4a35-9cfd-71e413797195";
+    const redirectUri = encodeURIComponent("http://localhost:5500/redirect");
+    const scopes = encodeURIComponent("openid profile");
+    const responseType = "code";
+    const responseMode = "query";
+    const state = "12345"; // A state parameter to mitigate CSRF attacks, should be generated dynamically for each request
+    const prompt = "login"; // Force login prompt
+
+    // Construct the full authorization URL with prompt=login
+    const authUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&response_mode=${responseMode}&scope=${scopes}&state=${state}&prompt=${prompt}`;
+
+    // Redirect the user to the Azure AD login page
+    window.location.href = authUrl;
+});
+
+
+// Modal functions remain the same as they're independent of the authentication flow
+function openModal() {
+    document.getElementById("forgotPasswordModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("forgotPasswordModal").style.display = "none";
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    var modal = document.getElementById("forgotPasswordModal");
+    if (event.target == modal) {
+        closeModal();
+    }
+};
+
+</script>
