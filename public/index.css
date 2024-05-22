@@ -7,7 +7,7 @@ body {
     width: 100vw;
     box-sizing: border-box;
     margin: 0;
-    background: url(/backgrnd.png);
+    background: url(/public/backgrnd.png);
     background-size: cover;
 }
 
