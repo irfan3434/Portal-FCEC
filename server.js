@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { ConfidentialClientApplication } = require('@azure/msal-node');
-const path = require('path'); // Add this line at the top
+const path = require('path');
 
 const SERVER_PORT = process.env.PORT || 5500;
 const REDIRECT_URI = "http://localhost:5500/redirect";
