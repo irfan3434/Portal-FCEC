@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - fcecportal
 
 on:
@@ -8,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +21,11 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install
-        run: npm install
-
-      - name: Build the app
-        run: npm run build --if-present
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -48,13 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7D774FAD01F54E028ACD3C8CC09D175A }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9CE62279AA9E408A9B5FDE81E42E8118 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8FAC11B302BF4941AB0A14DFC5023E4E }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_ED34053D1F3A4AF692406AAB51F49CFD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FF3D88BD17A54373B3D2C57FA04BED4A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D84FEA56FA734A63BF1980D06C1BAF20 }}
 
-      - name: Deploy to Azure Web App
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'fcecportal'
+          slot-name: 'Production'
           package: .
+          
